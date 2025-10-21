@@ -1,9 +1,19 @@
-import BeerCard from "./components/BeerCard"
+import { useEffect, useState } from "react"
+import BeerCard, { type BeerCardType } from "./components/BeerCard"
 
 const App = () => {
+
+  const [beer, setBeer] = useState<BeerCardType[]>([])
+
+  useEffect(()=>{
+    fetch('data.json')
+    .then(res => res.json())
+    .then(data => setBeer(data))
+  },[])
+
   return (
     <div className="beerCardWrapper">
-      <BeerCard />
+      {beer.map(item => <BeerCard {...item}/>)}
     </div>
   )
 }

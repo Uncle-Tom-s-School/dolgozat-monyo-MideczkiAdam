@@ -1,6 +1,20 @@
-const BeerCard = () => {
+export type BeerCardType = {
+  image: string,
+  name: string,
+  abv: string,
+  volume: string,
+  price: number,
+  available: boolean
+}
+
+const BeerCard = (props: BeerCardType) => {
   return (
-    <div className='beerCard'>Beer Card</div>
+    <div className='beerCard'>
+      <img src={props.image}/>
+      <strong>{props.name} {props.abv} {props.volume}</strong>
+      <p>{props.price}</p>
+      <p className={props.available? "available" : "notAvailable"} >{props.available? "Raktáron" : "Nincs raktáron"}</p>
+    </div>
   )
 }
 
